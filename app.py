@@ -44,7 +44,7 @@ def window():
     box_cargo = CTkComboBox(master = janela, height = 30, border_color = '#00DB53', values = ['13', '12', '11'])
     box_cargo.pack(pady =5, padx = 20, anchor='w')
     
-    def abrir_janela2():
+    def janelaCandidatos():
         cargo = box_cargo.get()
         municipio = box_mun.get()
         janela.destroy()
@@ -53,7 +53,7 @@ def window():
 
 
 
-    botao = CTkButton(master = janela, text = 'Procurar Candidatos', corner_radius = 30, fg_color = 'transparent', border_color = '#00DB53', border_width = 2, hover_color = '#DB0A00', font = ('Arial', 20), height = 50, cursor = 'hand2', command = abrir_janela2)
+    botao = CTkButton(master = janela, text = 'Procurar Candidatos', corner_radius = 30, fg_color = 'transparent', border_color = '#00DB53', border_width = 2, hover_color = '#DB0A00', font = ('Arial', 20), height = 50, cursor = 'hand2', command = janelaCandidatos)
     botao.pack(pady = 20, padx = 20, anchor = 'center')
 
     proc_codigos = CTkLabel(master = janela, text='Procurar por código:', font=('Arial', 25), text_color='#00DB53')

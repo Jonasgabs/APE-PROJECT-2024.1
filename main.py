@@ -24,11 +24,18 @@ class Main():
 
         return candidatos_concatenados.tolist()
 
-    def cod_candidatos(self):
+    def cod_candidatos(self, codigo):
         self.df = pd.read_csv('consulta_cand_2024_PB.csv', encoding='ISO-8859-1', sep=';', on_bad_lines='skip')
-        valores_unicos = self.df['NR_CANDIDATO'].unique().tolist() 
-        print(valores_unicos)
+        self.df['NR_CANDIDATO'] = self.df['NR_CANDIDATO'].astype(str).str.strip()
+        self.df_candidato = self.df.loc[self.df['NR_CANDIDATO'] == f'{codigo}']
+        self.colunas_necessarias = ['NM_URNA_CANDIDATO', 'NR_CANDIDATO', 'NM_CANDIDATO', 'NM_PARTIDO']
+        self.df_filtrados_colunas = self.df_candidato.loc[:, self.colunas_necessarias]
+        candidatos_concatenados = self.df_filtrados_colunas.apply(
+            lambda row: f"{row['NM_URNA_CANDIDATO']} ; Número candidato: {row['NR_CANDIDATO']} ; Nome candidato: {row['NM_CANDIDATO']} ; Partido: {row['NM_PARTIDO']}", axis=1
+        )
+        for candidato in candidatos_concatenados:
+            print(candidato)
 
 if __name__ == '__main__':
     main = Main()
-    main.cod_candidatos()
+    main.cod_candidatos(10)
