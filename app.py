@@ -1,8 +1,10 @@
 from PIL import Image
+from main import Main
 from customtkinter import *
 
 def window():
     janela = CTk()
+    janela.title('Consulta de Candidatos 2024')
     janela.geometry("400x500")
 
     set_appearance_mode('dark')
@@ -14,7 +16,7 @@ def window():
     cod_mun = CTkLabel(master = janela, text='Indique o código do município:', font=('Arial', 25), text_color='#00DB53')
     cod_mun.pack(pady = 20, padx = 20, anchor = 'w')
 
-    box_mun = CTkComboBox(master = janela, border_color = '#00DB53', values = ['22055', '20672', '20273', '21415', '19879', '20036', '20575', '19585', '20958', '22110', '20397', '21938',
+    box_mun = CTkComboBox(master = janela, height = 30, border_color = '#00DB53', values = ['22055', '20672', '20273', '21415', '19879', '20036', '20575', '19585', '20958', '22110', '20397', '21938',
     '19895', '20516', '19003', '20850', '19810', '21270', '19798', '21512', '19739', '19364', '19062', '21911',
     '19224', '19682', '21555', '20052', '19860', '22012', '19615', '20494', '19933', '21750', '21393', '19658',
     '20478', '19828', '20419', '21652', '19216', '19518', '20877', '19259', '19437', '22314', '22071', '19526',
@@ -37,11 +39,47 @@ def window():
 
     cod_cargo = CTkLabel(master = janela, text='Indique o código do Cargo:', font=('Arial', 25), text_color='#00DB53')
     cod_cargo.pack(pady = 20, padx = 20, anchor = 'w')
-    box_cargo = CTkComboBox(master = janela, border_color = '#00DB53', values = ['13', '12', '11'])
+    box_cargo = CTkComboBox(master = janela, height = 30, border_color = '#00DB53', values = ['13', '12', '11'])
     box_cargo.pack(pady =5, padx = 20, anchor='w')
+    
+    def abrir_janela2():
+        cargo = box_cargo.get()
+        municipio = box_mun.get()
+        main = Main()
+        main.municipios_cargos(cargo, municipio)
+        janela.destroy()
+        window2()
+
+
+
+
+    botao = CTkButton(master = janela, text = 'Procurar Candidatos', corner_radius = 30, fg_color = 'transparent', border_color = '#00DB53', border_width = 2, hover_color = '#DB0A00', font = ('Arial', 20), height = 50, cursor = 'hand2', command = abrir_janela2)
+    botao.pack(pady = 50, padx = 20, anchor = 'center')
+
 
 
     janela.mainloop()
 
+def window2():
+    janela2 = CTk()
+    janela2.title('Resultados dos Candidatos')
+    image = Image.open('img/tse.png')
+    img = CTkImage(light_image = image, dark_image = image, size = (150, 75))
+    logo_label = CTkLabel(master = janela2, image = img, text = '')
+    logo_label.pack(pady = (20, 10))
+    listaCandidatos = CTkLabel(master = janela2, text = 'Lista de candidatos referente ao', font = ('Arial', 25), text_color='#00DB53')
+    muncarg = CTkLabel(master = janela2, text='município e cargo selecionados:', font = ('Arial', 25), text_color='#00DB53')
+    listaCandidatos.pack(pady = 10, padx = 20, anchor = 'w')
+    muncarg.pack(pady = 0, padx = 20, anchor = 'w')
+    boxCandidatos = CTkComboBox(master = janela2, height = 30, border_color = '#00DB53', values = ['13', '12', '11'])
+    boxCandidatos.pack(pady = 25, padx = 20, anchor='w')
+
+    janela2.geometry('400x500')
+    janela2.mainloop()
+
 
 window()
+
+# Printar os candidatos referentes aos cargos e municipios
+# Dar a opção de procurar o candidato pelo código
+# Botão para ver as estátisticas
