@@ -15,8 +15,20 @@ class Main():
             (self.df['SG_UE'] ==  f'{municipio}')
             ]
         
-        self.colunas_necessarias = ['NM_URNA_CANDIDATO', 'NR_CANDIDATO', 'NM_CANDIDATO']
+        self.colunas_necessarias = ['NM_URNA_CANDIDATO', 'NR_CANDIDATO', 'NM_CANDIDATO', 'NM_PARTIDO']
         self.df_filtrados_colunas = self.df_filtrados.loc[:, self.colunas_necessarias]
 
-        print(self.df_filtrados_colunas)
+        candidatos_concatenados = self.df_filtrados_colunas.apply(
+            lambda row: f"{row['NM_URNA_CANDIDATO']} ; {row['NR_CANDIDATO']} ; {row['NM_CANDIDATO']} ; {row['NM_PARTIDO']}", axis=1
+        )
 
+        return candidatos_concatenados.tolist()
+
+    def cod_candidatos(self):
+        self.df = pd.read_csv('consulta_cand_2024_PB.csv', encoding='ISO-8859-1', sep=';', on_bad_lines='skip')
+        valores_unicos = self.df['NR_CANDIDATO'].unique().tolist() 
+        print(valores_unicos)
+
+if __name__ == '__main__':
+    main = Main()
+    main.cod_candidatos()
