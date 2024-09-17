@@ -1,6 +1,8 @@
 from PIL import Image
+import pages
 from main import Main
 from customtkinter import *
+
 
 def window():
     janela = CTk()
@@ -43,14 +45,12 @@ def window():
     cod_cargo.pack(pady = 5, padx = 20, anchor = 'w')
     box_cargo = CTkComboBox(master = janela, height = 30, border_color = '#00DB53', values = ['13', '12', '11'])
     box_cargo.pack(pady =5, padx = 20, anchor='w')
-    cargo = box_cargo.get()
-    municipio = box_mun.get()
 
     def janelaCandidatos():
+        cargo = box_cargo.get()
+        municipio = box_mun.get()
         janela.destroy()
         window2(municipio, cargo)
-
-
 
 
     botao = CTkButton(master = janela, text = 'Procurar Candidatos', corner_radius = 30, fg_color = 'transparent', border_color = '#00DB53', border_width = 2, hover_color = '#DB0A00', font = ('Arial', 20), height = 50, cursor = 'hand2', command = janelaCandidatos)
@@ -69,9 +69,10 @@ def window():
 
     janela.mainloop()
 
-    return municipio, cargo
+    
     
 def window2(municipio, cargo):
+
     #JANELA
     janela2 = CTk()
     janela2.title('Resultados dos Candidatos')
