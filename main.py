@@ -24,6 +24,30 @@ class Main():
 
         return candidatos_concatenados.tolist()
 
+    def pegando_mun(self):
+        self.df = pd.read_csv('consulta_cand_2024_PB.csv', encoding='ISO-8859-1', sep=';', on_bad_lines='skip')
+        self.df['SG_UE'] = self.df['SG_UE'].astype(str).str.strip() 
+        valores_unicos = self.df['SG_UE'].unique().tolist()
+        valores_com_aspas = [f'{valor}' for valor in valores_unicos]
+        #print(valores_com_aspas)
+        return valores_com_aspas
+
+    def pegando_cargo(self):
+        self.df = pd.read_csv('consulta_cand_2024_PB.csv', encoding='ISO-8859-1', sep=';', on_bad_lines='skip')
+        self.df['CD_CARGO'] = self.df['CD_CARGO'].astype(str).str.strip() 
+        valores_unicos = self.df['CD_CARGO'].unique().tolist()
+        valores_com_aspas = [f'{valor}' for valor in valores_unicos]
+        #print(valores_com_aspas)
+        return valores_com_aspas
+    
+    def pegando_cod(self):
+        self.df = pd.read_csv('consulta_cand_2024_PB.csv', encoding='ISO-8859-1', sep=';', on_bad_lines='skip')
+        self.df['NR_CANDIDATO'] = self.df['NR_CANDIDATO'].astype(str).str.strip()
+        valores_unicos = self.df['NR_CANDIDATO'].unique().tolist()
+        valores_com_aspas = [f'{valor}' for valor in valores_unicos]
+        #print(valores_com_aspas)
+        return valores_com_aspas
+
     def cod_candidatos(self, codigo):
         self.df = pd.read_csv('consulta_cand_2024_PB.csv', encoding='ISO-8859-1', sep=';', on_bad_lines='skip')
         self.df['NR_CANDIDATO'] = self.df['NR_CANDIDATO'].astype(str).str.strip()
@@ -38,4 +62,4 @@ class Main():
 
 if __name__ == '__main__':
     main = Main()
-    main.cod_candidatos(10)
+    main.pegando_mun()
