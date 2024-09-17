@@ -43,10 +43,10 @@ def window():
     cod_cargo.pack(pady = 5, padx = 20, anchor = 'w')
     box_cargo = CTkComboBox(master = janela, height = 30, border_color = '#00DB53', values = ['13', '12', '11'])
     box_cargo.pack(pady =5, padx = 20, anchor='w')
-    
+    cargo = box_cargo.get()
+    municipio = box_mun.get()
+
     def janelaCandidatos():
-        cargo = box_cargo.get()
-        municipio = box_mun.get()
         janela.destroy()
         window2(municipio, cargo)
 
@@ -69,6 +69,7 @@ def window():
 
     janela.mainloop()
 
+    return municipio, cargo
     
 def window2(municipio, cargo):
     #JANELA
@@ -81,8 +82,7 @@ def window2(municipio, cargo):
     #TEXTO 
     listaCandidatos = CTkLabel(master = janela2, text = 'Lista de candidatos referente ao', font = ('Arial', 25), text_color='#00DB53')
     muncarg = CTkLabel(master = janela2, text='município e cargo selecionados:', font = ('Arial', 25), text_color='#00DB53')
-    especifico = CTkLabel(master = janela2, text='''nome, nome na urna, número
-e partido(respectivamente)''', font = ('Arial', 25), text_color='#00DB53')
+    especifico = CTkLabel(master = janela2, text='''nome, nome na urna, número e partido(respectivamente)''', font = ('Arial', 25), text_color='#00DB53')
     listaCandidatos.pack(pady = 10, padx = 20, anchor = 'center')
     muncarg.pack(pady = 0, padx = 20, anchor = 'center')
     especifico.pack(pady = 0, padx = 20, anchor = 'center')

@@ -1,7 +1,10 @@
-def pages_style():
+from main import Main
+import app
+
+'''def pages_style():
     cadidate_template_head = f'''
 
-html john
+
 
 
 '''
@@ -9,7 +12,7 @@ html john
 
     cadidate_template_footer = f'''
 
-html john
+
 
 '''
 
@@ -41,10 +44,18 @@ html john
 
     # Escrevendo o conteúdo HTML no arquivo
     with open(output_file, 'w') as file:
-        file.write(html_content_head, html_content_footer)
+        file.write(html_content_head, html_content_footer)'''
+
+cargo, municipio = app.window()
 
 
-
+def getdata(municipio, cargo):
+   
+    main = Main()
+    candidatos = main.municipios_cargos(municipio, cargo)
+    print(candidatos)
+    
+getdata(municipio, cargo)
 
 ''' ver como utilizar no app.py
 
