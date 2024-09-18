@@ -1,5 +1,4 @@
 from main import Main
-from app import window2
 
 '''def pages_style():
     cadidate_template_head = f'''
@@ -49,11 +48,7 @@ from app import window2
 #cargo, municipio = app.window()
 
 
-def getdata(municipio, cargo):
-    window2()
-   
-    main = Main()
-    candidatos = main.municipios_cargos(municipio, cargo)
+def getdata(candidatos):
     print(candidatos)
     
 #getdata(municipio, cargo)

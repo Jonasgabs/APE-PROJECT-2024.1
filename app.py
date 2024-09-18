@@ -1,7 +1,7 @@
 from PIL import Image
-import pages
 from main import Main
 from customtkinter import *
+import pages
 
 
 def window():
@@ -61,29 +61,31 @@ def window():
     
     
 def window2(municipio, cargo):
-
-    #JANELA
-    janela2 = CTk()
-    janela2.title('Resultados dos Candidatos')
-    image = Image.open('img/tse.png')
-    img = CTkImage(light_image = image, dark_image = image, size = (150, 75))
-    logo_label = CTkLabel(master = janela2, image = img, text = '')
-    logo_label.pack(pady = (20, 10))
-    #TEXTO 
-    listaCandidatos = CTkLabel(master = janela2, text = 'Lista de candidatos referente ao', font = ('Arial', 25), text_color='#00DB53')
-    muncarg = CTkLabel(master = janela2, text='município e cargo selecionados:', font = ('Arial', 25), text_color='#00DB53')
-    especifico = CTkLabel(master = janela2, text='''nome, nome na urna, número e partido(respectivamente)''', font = ('Arial', 25), text_color='#00DB53')
-    listaCandidatos.pack(pady = 10, padx = 20, anchor = 'center')
-    muncarg.pack(pady = 0, padx = 20, anchor = 'center')
-    especifico.pack(pady = 0, padx = 20, anchor = 'center')
-    #COMOBOX
     main = Main()
     candidatos = main.municipios_cargos(municipio, cargo)
-    boxCandidatos = CTkComboBox(master = janela2, height = 30, width = 400, border_color = '#00DB53', values = candidatos)
-    boxCandidatos.pack(pady = 25, padx = 20, anchor='center')
+    pages.getdata(candidatos)
+    
 
-    janela2.geometry('500x650')
-    janela2.mainloop()
+    ##JANELA
+    #janela2 = CTk()
+    #janela2.title('Resultados dos Candidatos')
+    #image = Image.open('img/tse.png')
+    #img = CTkImage(light_image = image, dark_image = image, size = (150, 75))
+    #logo_label = CTkLabel(master = janela2, image = img, text = '')
+    #logo_label.pack(pady = (20, 10))
+    ##TEXTO 
+    #listaCandidatos = CTkLabel(master = janela2, text = 'Lista de candidatos referente ao', font = ('Arial', 25), text_color='#00DB53')
+    #muncarg = CTkLabel(master = janela2, text='município e cargo selecionados:', font = ('Arial', 25), text_color='#00DB53')
+    #especifico = CTkLabel(master = janela2, text='''nome, nome na urna, número e partido(respectivamente)''', font = ('Arial', 25), text_color='#00DB53')
+    #listaCandidatos.pack(pady = 10, padx = 20, anchor = 'center')
+    #muncarg.pack(pady = 0, padx = 20, anchor = 'center')
+    #especifico.pack(pady = 0, padx = 20, anchor = 'center')
+    ##COMOBOX
+    #boxCandidatos = CTkComboBox(master = janela2, height = 30, width = 400, border_color = '#00DB53', values = candidatos)
+    #boxCandidatos.pack(pady = 25, padx = 20, anchor='center')
+
+    #janela2.geometry('500x650')
+    #janela2.mainloop()
 
 
 window()
