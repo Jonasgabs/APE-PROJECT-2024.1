@@ -76,6 +76,16 @@ def codCandidato(codigos):
     candidatos = main.cod_candidatos(codigos)
     pages.getdata(candidatos)
 
+#Pegando dados para estatisticas
+def estatisticas():
+    main = Main()
+    #Pegando aquantidade de cargos..
+    qttd = main.qtd()
+    prefeitos = qttd[0]
+    vice_prefeitos = qttd[1]
+    vereadores = qttd[2]
+    #Pegando a quantidade de prefeitos por partido
+    qtd_prefeitos_partido = main.partido_pref()
 
 window()
 

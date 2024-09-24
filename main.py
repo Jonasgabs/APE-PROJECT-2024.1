@@ -1,7 +1,7 @@
 import pandas as pd
 
 class Main():
-
+    #func pra trazer os candidadtos
     def municipios_cargos(self, municipio, cargo):
         municipio = str(municipio).strip()
         cargo = str(cargo).strip()  
@@ -24,6 +24,7 @@ class Main():
 
         return candidatos_concatenados.tolist()
 
+    #func pra trazer os códigos dos municipios
     def pegando_mun(self):
         self.df = pd.read_csv('consulta_cand_2024_PB.csv', encoding='ISO-8859-1', sep=';', on_bad_lines='skip')
         self.df['SG_UE'] = self.df['SG_UE'].astype(str).str.strip() 
@@ -32,6 +33,7 @@ class Main():
         #print(valores_com_aspas)
         return valores_com_aspas
 
+    #func pra trazer os códigos dos cargos
     def pegando_cargo(self):
         self.df = pd.read_csv('consulta_cand_2024_PB.csv', encoding='ISO-8859-1', sep=';', on_bad_lines='skip')
         self.df['CD_CARGO'] = self.df['CD_CARGO'].astype(str).str.strip() 
@@ -40,6 +42,7 @@ class Main():
         #print(valores_com_aspas)
         return valores_com_aspas
     
+    #func pra trazer os códigos dos candidatos
     def pegando_cod(self):
         self.df = pd.read_csv('consulta_cand_2024_PB.csv', encoding='ISO-8859-1', sep=';', on_bad_lines='skip')
         self.df['NR_CANDIDATO'] = self.df['NR_CANDIDATO'].astype(str).str.strip()
@@ -48,6 +51,7 @@ class Main():
         #print(valores_com_aspas)
         return valores_com_aspas
 
+    #func pra trazer os candidatos baseado nos códigos
     def cod_candidatos(self, codigo):
         self.df = pd.read_csv('consulta_cand_2024_PB.csv', encoding='ISO-8859-1', sep=';', on_bad_lines='skip')
         self.df['NR_CANDIDATO'] = self.df['NR_CANDIDATO'].astype(str).str.strip()
@@ -60,6 +64,36 @@ class Main():
         for candidato in candidatos_concatenados:
             print(candidato)
 
+    #func pra trazer a quantidade de prefeitos, vices e vereadores     
+    def qtd(self):
+        self.df = pd.read_csv('consulta_cand_2024_PB.csv', encoding='ISO-8859-1', sep=';', on_bad_lines='skip')
+        self.df['CD_CARGO'] = self.df['CD_CARGO'].astype(str).str.strip()
+
+        self.df_prefeitos = self.df.loc[
+            (self.df['CD_CARGO'] == '11') 
+        ]
+
+        self.df_vice = self.df.loc[
+            (self.df['CD_CARGO'] == '12') 
+        ]
+
+        self.df_vereador = self.df.loc[
+            (self.df['CD_CARGO'] == '13') 
+        ]
+        qtd =[len(self.df_prefeitos), len(self.df_vice), len(self.df_vereador)]
+
+        return qtd
+    
+    def partido_pref(self):
+        self.df = pd.read_csv('consulta_cand_2024_PB.csv', encoding='ISO-8859-1', sep=';', on_bad_lines='skip')
+        self.df['CD_CARGO'] = self.df['CD_CARGO'].astype(str).str.strip()
+        self.df['NM_PARTIDO'] = self.df['NM_PARTIDO'].astype(str).str.strip()
+        self.df_prefeitos = self.df.loc[
+            (self.df['CD_CARGO'] == '11')
+        ]
+        self.partidos_candidatos = self.df_prefeitos.groupby('NM_PARTIDO').size().reset_index(name='Quantidade')
+        return self.partidos_candidatos
+
 if __name__ == '__main__':
     main = Main()
-    main.cod_candidatos()
+    main.partido_pref()

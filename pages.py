@@ -1,6 +1,6 @@
 from main import Main
 
-def generate_html_estatistica(candidatos):
+def generate_html_estatistica(prefeitos):
     html_estatistica=f'''
 
     <!DOCTYPE html>
