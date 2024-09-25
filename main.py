@@ -93,7 +93,18 @@ class Main():
         ]
         self.partidos_candidatos = self.df_prefeitos.groupby('NM_PARTIDO').size().reset_index(name='Quantidade')
         return self.partidos_candidatos
+    
+    def faixa_etaria(self):
+        qt21 = 0
+        qt22_40 = 0
+        qt41_60 = 0
+        qt61 = 0
+        self.df = pd.read_csv('consulta_cand_2024_PB.csv', encoding='ISO-8859-1', sep=';', on_bad_lines='skip')
+        self.df['DT_NASCIMENTO'] = self.df['DT_NASCIMENTO'].astype(str).str.strip()
+        self.df['DT_NASCIMENTO'] = pd.to_datetime(self.df['DT_NASCIMENTO'],  format='%d/%m/%Y', errors='coerce')
+        self.ano = self.df['DT_NASCIMENTO'].dt.year
+        print(self.ano)
 
 if __name__ == '__main__':
     main = Main()
-    main.partido_pref()
+    main.faixa_etaria()
