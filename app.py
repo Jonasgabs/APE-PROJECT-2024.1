@@ -89,6 +89,3 @@ def estatisticas():
 
 window()
 
-# Printar os candidatos referentes aos cargos e municipios
-# Dar a opção de procurar o candidato pelo código
-# Botão para ver as estátisticas
