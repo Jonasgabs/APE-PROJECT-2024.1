@@ -103,7 +103,23 @@ class Main():
         self.df['DT_NASCIMENTO'] = self.df['DT_NASCIMENTO'].astype(str).str.strip()
         self.df['DT_NASCIMENTO'] = pd.to_datetime(self.df['DT_NASCIMENTO'],  format='%d/%m/%Y', errors='coerce')
         self.ano = self.df['DT_NASCIMENTO'].dt.year
-        print(self.ano)
+        self.ano = self.ano.tolist()
+        for i in range(len(self.ano)):
+            if (2024 - int(self.ano[i])) <= 21:
+                qt21 += 1
+            elif (2024 - int(self.ano[i])) <= 40:
+                qt22_40 += 1
+            elif (2024 - int(self.ano[i])) <= 60:
+                qt41_60 += 1
+            elif (2024 - int(self.ano[i])) > 60:
+                qt61 += 1
+        
+        return qt21, qt22_40, qt41_60, qt61
+    
+
+    def percentual_cargo(self):
+        pass
+        
 
 if __name__ == '__main__':
     main = Main()

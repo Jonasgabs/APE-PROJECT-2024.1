@@ -86,6 +86,10 @@ def estatisticas():
     vereadores = qttd[2]
     #Pegando a quantidade de prefeitos por partido
     qtd_prefeitos_partido = main.partido_pref()
+    #Pegandoa a idade dos candidatos por faixa etaria
+    ate21, ate40, ate60, depois60 = main.faixa_etaria()
+    
+
 
 window()
 
