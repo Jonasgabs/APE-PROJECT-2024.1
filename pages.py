@@ -1,7 +1,7 @@
 from main import Main
 
-def generate_html_estatistica(prefeitos):
-    html_estatistica=f'''
+def generate_html_estatistica(qtd_prefeitos, qtd_vice_prefeitos, qtd_vereadores, ate21, ate40, ate60, depois60):
+    html_estatistica_top=f'''
 
     <!DOCTYPE html>
     <html lang="pt-BR">
@@ -29,19 +29,22 @@ def generate_html_estatistica(prefeitos):
                         <tbody>
                             <tr>
                                 <td>Prefeito</td>
-                                <td>variavel <!-- inserir a variavel correspondente--></td>
+                                <td>{qtd_prefeitos}</td>
                             </tr>
                             <tr>
                                 <td>Vice-prefeito</td>
-                                <td>variavel <!-- inserir a variavel correspondente--></td>
+                                <td>{qtd_vice_prefeitos}</td>
                             </tr>
                             <tr>
                                 <td>Vereador</td>
-                                <td>variavel <!-- inserir a variavel correspondente--></td>
+                                <td>{qtd_vereadores}</td>
                             </tr>
                         </tbody>
                     </table>
-                </section>
+                </section>'''
+
+    html_estatistica_mid = f'''
+
                 <section class="my-5">
                     <h2>Partidos com candidatos ao cargo de Prefeito</h2>
                     <table class="table table-dark table-hover">
@@ -59,7 +62,10 @@ def generate_html_estatistica(prefeitos):
                         </tbody>
                     </table>
                 </section>
-                <section class="mb-5">
+                <section class="mb-5">'''
+
+    html_estatistica_down = f'''
+
                     <h2>Quantidade de candidatos por faixa etária</h2>
                     <table class="table table-dark table-hover">
                         <thead>
@@ -72,10 +78,10 @@ def generate_html_estatistica(prefeitos):
                             </thead>
                         <tbody>
                             <tr>
-                                <td>variavel <!-- inserir a variavel correspondente--></td>
-                                <td>variavel <!-- inserir a variavel correspondente--></td>
-                                <td>variavel <!-- inserir a variavel correspondente--></td>
-                                <td>variavel <!-- inserir a variavel correspondente--></td>
+                                <td>{ate21}</td>
+                                <td>{ate40}</td>
+                                <td>{ate60}</td>
+                                <td>{depois60}</td>
                             </tr>                        
                         </tbody>
                     </table>
@@ -110,7 +116,7 @@ def generate_html_estatistica(prefeitos):
     </html>
 
     '''
-    return html_estatistica
+   
 
 
 def generate_html_candidatos(candidatos):
