@@ -43,7 +43,8 @@ def generate_html_estatistica(qtd_prefeitos, qtd_vice_prefeitos, qtd_vereadores,
                     </table>
                 </section>'''
 
-    html_estatistica_mid = f'''
+    lista_candidatos_por_partido = Main.partido_pref()
+    html_estatistica_mid_fixa = f'''
 
                 <section class="my-5">
                     <h2>Partidos com candidatos ao cargo de Prefeito</h2>
@@ -53,7 +54,9 @@ def generate_html_estatistica(qtd_prefeitos, qtd_vice_prefeitos, qtd_vereadores,
                                 <th>Nome do partido</th>
                                 <th>Quantidade de Candidatos</th>
                             </tr>
-                            </thead>
+                            </thead>'''
+
+                            '''
                         <tbody>
                             <tr>
                                 <td>variavel <!-- inserir a variavel correspondente--></td>
