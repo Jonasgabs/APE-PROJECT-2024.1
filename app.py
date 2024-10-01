@@ -88,6 +88,8 @@ def estatisticas():
     qtd_prefeitos_partido = main.partido_pref()
     #Pegandoa a idade dos candidatos por faixa etaria
     ate21, ate40, ate60, depois60 = main.faixa_etaria()
+    # quantidade de candidatos por partido 
+    pages.generate_html_estatistica(prefeitos, vice_prefeitos, vereadores, ate21, ate40, ate60, depois60)
     
 
 
