@@ -83,15 +83,15 @@ class Main():
 
         return qtd
     
-    def partido_pref(self):
-        self.df = pd.read_csv('consulta_cand_2024_PB.csv', encoding='ISO-8859-1', sep=';', on_bad_lines='skip')
-        self.df['CD_CARGO'] = self.df['CD_CARGO'].astype(str).str.strip()
-        self.df['NM_PARTIDO'] = self.df['NM_PARTIDO'].astype(str).str.strip()
-        self.df_prefeitos = self.df.loc[
-            (self.df['CD_CARGO'] == '11')
+    def partido_pref():
+        df = pd.read_csv('consulta_cand_2024_PB.csv', encoding='ISO-8859-1', sep=';', on_bad_lines='skip')
+        df['CD_CARGO'] = df['CD_CARGO'].astype(str).str.strip()
+        df['NM_PARTIDO'] = df['NM_PARTIDO'].astype(str).str.strip()
+        df_prefeitos = df.loc[
+            (df['CD_CARGO'] == '11')
         ]
-        self.partidos_candidatos = self.df_prefeitos.groupby('NM_PARTIDO').size().reset_index(name='Quantidade')
-        return self.partidos_candidatos
+        partidos_candidatos = df_prefeitos.groupby('NM_PARTIDO').size().reset_index(name='Quantidade')
+        return partidos_candidatos
     
     def faixa_etaria(self):
         qt21 = 0
