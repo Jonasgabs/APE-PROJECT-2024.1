@@ -97,7 +97,7 @@ def generate_html_estatistica(qtd_prefeitos, qtd_vice_prefeitos, qtd_vereadores,
                     <table class="table table-dark table-hover">
                         <thead>
                             <tr>
-                                <th>PREFEITO {porcentagens_prefeito[0]:.2f}  % %</th>
+                                <th>PREFEITO {porcentagens_prefeito[0]:.2f}   %</th>
                                 <th>Grau de instrução</th>
                                 <th>Gênero</th>
                                 <th>Estado Civil</th>
@@ -151,7 +151,7 @@ def generate_html_estatistica(qtd_prefeitos, qtd_vice_prefeitos, qtd_vereadores,
                     <table class="table table-dark table-hover">
                         <thead>
                             <tr>
-                                <th>VICE-PREFEITO {porcentagens_viceprefeito[0]:.2f}  % %</th>
+                                <th>VICE-PREFEITO {porcentagens_viceprefeito[0]:.2f}   %</th>
                                 <th>Grau de instrução</th>
                                 <th>Gênero</th>
                                 <th>Estado Civil</th>
@@ -205,7 +205,7 @@ def generate_html_estatistica(qtd_prefeitos, qtd_vice_prefeitos, qtd_vereadores,
                     <table class="table table-dark table-hover">
                         <thead>
                             <tr>
-                                <th>VEREADOR {porcentagens_vereador[0]:.2f}  % %</th>
+                                <th>VEREADOR {porcentagens_vereador[0]:.2f}   %</th>
                                 <th>Grau de instrução</th>
                                 <th>Gênero</th>
                                 <th>Estado Civil</th>
