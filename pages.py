@@ -3,7 +3,7 @@ import webbrowser
 
 def generate_html_estatistica(qtd_prefeitos, qtd_vice_prefeitos, qtd_vereadores, ate21, ate40, ate60, depois60):
     main = Main()
-    porcentagens_prefeito, porcentagens_viceprefeito, porcentagens_vereador = main.percentuals()
+    porcentagens_prefeito, porcentagens_viceprefeito, porcentagens_vereador, porcentagens = main.percentuals()
     lista_candidatos_por_partido = main.partido_pref()
     partidos_quantidade = ''
     for indice, linha in lista_candidatos_por_partido.iterrows():
@@ -94,6 +94,60 @@ def generate_html_estatistica(qtd_prefeitos, qtd_vice_prefeitos, qtd_vereadores,
                 </section>
                 <section class="mb-5">
                     <h2>Percentual de candidatos por cargo</h2>
+                    <table class="table table-dark table-hover">
+                        <thead>
+                            <tr>
+                                <th>Total {porcentagens[0]}   </th>
+                                <th>Grau de instrução</th>
+                                <th>Gênero</th>
+                                <th>Estado Civil</th>
+                            </tr>
+                            </thead>
+                        <tbody>
+                            <tr>
+                                <td>Porcentagem %</td>
+                                <td>LÊ E ESCREVE {porcentagens[1]:.2f}  %</td>
+                                <td>MASCULINO {porcentagens[9]:.2f}  %</td>
+                                <td>CASADO(A) {porcentagens[10]:.2f}  %</td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>ENSINO FUNDAMENTAL INCOMPLETO {porcentagens[2]:.2f}  %</td>
+                                <td>FEMININO {porcentagens[8]:.2f}  %</td>
+                                <td>SOLTEIRO(A) {porcentagens[11]:.2f}  %</td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>ENSINO FUNDAMENTAL COMPLETO {porcentagens[3]:.2f}  %</td>
+                                <td></td>
+                                <td>DIVORCIADO(A) {porcentagens[12]:.2f}  %</td>
+                            </tr> 
+                            <tr>
+                                <td></td>
+                                <td>ENSINO MÉDIO INCOMPLETO {porcentagens[4]:.2f}  %</td>
+                                <td></td>
+                                <td>VIUVO(A) {porcentagens[13]:.2f}  %</td>
+                            </tr> 
+                            <tr>
+                                <td></td>
+                                <td>'ENSINO MÉDIO COMPLETO {porcentagens[5]:.2f}  %</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>SUPERIOR INCOMPLETO {porcentagens[6]:.2f}  %</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>SUPERIOR COMPLETO {porcentagens[7]:.2f}  %</td>
+                                <td></td>
+                                <td></td>
+                            </tr>                          
+                        </tbody>
+                    </table>
                     <table class="table table-dark table-hover">
                         <thead>
                             <tr>
@@ -256,6 +310,7 @@ def generate_html_estatistica(qtd_prefeitos, qtd_vice_prefeitos, qtd_vereadores,
                             </tr>                          
                         </tbody>
                     </table>
+                    
             </main>
             <footer class="text-center my-4">
                 <p>&copy; 2024 TSE - Estatísticas Eleitorais.</p>

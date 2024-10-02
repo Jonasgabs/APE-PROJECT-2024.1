@@ -119,6 +119,9 @@ class Main():
     def percentuals(self):
         total_candidatos = sum(self.faixa_etaria())
         df = pd.read_csv('consulta_cand_2024_PB.csv', encoding='ISO-8859-1', sep=';', on_bad_lines='skip')
+        LeE = EfI = EfC = EmI = EmC = Si = Sc = 0
+        genero_F = genero_M = 0
+        casado = solteiro = divorciado = viuvo = 0
         #prefeitos
         qtd_prefeitos = 0
         prefeito_LeE = prefeito_EfI = prefeito_EfC = prefeito_EmI = prefeito_EmC = prefeito_Si = prefeito_Sc = 0
@@ -143,34 +146,46 @@ class Main():
                 match linha["DS_GRAU_INSTRUCAO"]:
                     case 'LÊ E ESCREVE':
                         prefeito_LeE += 1
+                        LeE += 1
                     case 'ENSINO FUNDAMENTAL INCOMPLETO':
-                         prefeito_EfI += 1
+                        prefeito_EfI += 1
+                        EfI += 1
                     case 'ENSINO FUNDAMENTAL COMPLETO':
                         prefeito_EfC += 1
+                        EfC += 1
                     case 'ENSINO MÉDIO INCOMPLETO':
-                         prefeito_EmI += 1
+                        prefeito_EmI += 1
+                        EmI += 1
                     case 'ENSINO MÉDIO COMPLETO':
                         prefeito_EmC += 1
+                        EmC += 1 
                     case 'SUPERIOR INCOMPLETO':
                         prefeito_Si += 1
+                        Si += 1
                     case 'SUPERIOR COMPLETO':
                         prefeito_Sc += 1
+                        Sc += 1
                 
                 if linha["DS_GENERO"] == 'MASCULINO':
                     prefeito_genero_M += 1
-
+                    genero_M += 1
                 elif linha["DS_GENERO"] == 'FEMININO':
                     prefeito_genero_F += 1
+                    genero_F += 1
 
                 match linha["DS_ESTADO_CIVIL"]:
                     case 'CASADO(A)':
                         prefeito_casado += 1
+                        casado += 1
                     case 'SOLTEIRO(A)':
                         prefeito_solteiro += 1
+                        solteiro += 1
                     case 'DIVORCIADO(A)':
                         prefeito_divorciado += 1
+                        divorciado += 1
                     case 'VIÚVO(A)':
                         prefeito_viuvo += 1
+                        viuvo += 1
 
             elif linha["DS_CARGO"] == "VICE-PREFEITO":
                 
@@ -178,34 +193,46 @@ class Main():
                 match linha["DS_GRAU_INSTRUCAO"]:
                     case 'LÊ E ESCREVE':
                         viceprefeito_LeE += 1
+                        LeE += 1
                     case 'ENSINO FUNDAMENTAL INCOMPLETO':
-                         viceprefeito_EfI += 1
+                        viceprefeito_EfI += 1
+                        EfI += 1
                     case 'ENSINO FUNDAMENTAL COMPLETO':
                         viceprefeito_EfC += 1
+                        EfC += 1
                     case 'ENSINO MÉDIO INCOMPLETO':
-                         viceprefeito_EmI += 1
+                        viceprefeito_EmI += 1
+                        EmI += 1
                     case 'ENSINO MÉDIO COMPLETO':
                         viceprefeito_EmC += 1
+                        EmC += 1 
                     case 'SUPERIOR INCOMPLETO':
                         viceprefeito_Si += 1
+                        Si += 1
                     case 'SUPERIOR COMPLETO':
                         viceprefeito_Sc += 1
+                        Sc += 1
                 
                 if linha["DS_GENERO"] == 'MASCULINO':
                     viceprefeito_genero_M += 1
-
+                    genero_M += 1
                 elif linha["DS_GENERO"] == 'FEMININO':
                     viceprefeito_genero_F += 1
+                    genero_F += 1
 
                 match linha["DS_ESTADO_CIVIL"]:
                     case 'CASADO(A)':
                         viceprefeito_casado += 1
+                        casado += 1
                     case 'SOLTEIRO(A)':
                         viceprefeito_solteiro += 1
+                        solteiro += 1
                     case 'DIVORCIADO(A)':
                         viceprefeito_divorciado += 1
+                        divorciado += 1
                     case 'VIÚVO(A)':
                         viceprefeito_viuvo += 1
+                        viuvo += 1
             
             elif linha["DS_CARGO"] == "VEREADOR":
                 qtd_vereadores += 1
@@ -213,34 +240,46 @@ class Main():
                 match linha["DS_GRAU_INSTRUCAO"]:
                     case 'LÊ E ESCREVE':
                         vereador_LeE += 1
+                        LeE += 1
                     case 'ENSINO FUNDAMENTAL INCOMPLETO':
-                         vereador_EfI += 1
+                        vereador_EfI += 1
+                        EfI += 1
                     case 'ENSINO FUNDAMENTAL COMPLETO':
                         vereador_EfC += 1
+                        EfC += 1
                     case 'ENSINO MÉDIO INCOMPLETO':
-                         vereador_EmI += 1
+                        vereador_EmI += 1
+                        EmI += 1
                     case 'ENSINO MÉDIO COMPLETO':
                         vereador_EmC += 1
+                        EmC += 1 
                     case 'SUPERIOR INCOMPLETO':
                         vereador_Si += 1
+                        Si += 1
                     case 'SUPERIOR COMPLETO':
                         vereador_Sc += 1
+                        Sc += 1
                 
                 if linha["DS_GENERO"] == 'MASCULINO':
                     vereador_genero_M += 1
-
+                    genero_M += 1
                 elif linha["DS_GENERO"] == 'FEMININO':
                     vereador_genero_F += 1
+                    genero_F += 1
 
                 match linha["DS_ESTADO_CIVIL"]:
                     case 'CASADO(A)':
                         vereador_casado += 1
+                        casado += 1
                     case 'SOLTEIRO(A)':
                         vereador_solteiro += 1
+                        solteiro += 1
                     case 'DIVORCIADO(A)':
                         vereador_divorciado += 1
+                        divorciado += 1
                     case 'VIÚVO(A)':
                         vereador_viuvo += 1
+                        viuvo += 1
 
 
 
@@ -277,8 +316,19 @@ class Main():
         porcentagens_vereador += [porcentagem_vereador_genero_F, porcentagem_vereador_genero_M]
         porcentagem_vereador_casado, porcentagem_vereador_solteiro, porcentagem_vereador_divorciado, porcentagem_vereador_viuvo = (vereador_casado / qtd_vereadores) * 100, (vereador_solteiro / qtd_vereadores) * 100, (vereador_divorciado / qtd_vereadores) * 100, (vereador_viuvo / qtd_vereadores) * 100
         porcentagens_vereador += [porcentagem_vereador_casado, porcentagem_vereador_solteiro, porcentagem_vereador_divorciado, porcentagem_vereador_viuvo]
+
+        #porcentagens total
+        porcentagens= []
+        porcentagem= total_candidatos
+        porcentagens.append(porcentagem)
+        porcentagem_LeE, porcentagem_EfI, porcentagem_EfC, porcentagem_EmI, porcentagem_EmC, porcentagem_Si, porcentagem_Sc = (LeE / total_candidatos) * 100, (EfI / total_candidatos) * 100, (EfC / total_candidatos) * 100, (EmI / total_candidatos) * 100, (EmC / total_candidatos) * 100, (Si / total_candidatos) * 100, (Sc / total_candidatos) * 100
+        porcentagens+= [porcentagem_LeE, porcentagem_EfI, porcentagem_EfC, porcentagem_EmI, porcentagem_EmC, porcentagem_Si, porcentagem_Sc]
+        porcentagem_genero_F, porcentagem_genero_M = (genero_F / total_candidatos) * 100, (genero_M / total_candidatos) * 100
+        porcentagens+= [porcentagem_genero_F, porcentagem_genero_M]
+        porcentagem_casado, porcentagem_solteiro, porcentagem_divorciado, porcentagem_viuvo = (casado / total_candidatos) * 100, (solteiro / total_candidatos) * 100, (divorciado / total_candidatos) * 100, (viuvo / total_candidatos) * 100
+        porcentagens+= [porcentagem_casado, porcentagem_solteiro, porcentagem_divorciado, porcentagem_viuvo]
         
-        return porcentagens_prefeito, porcentagens_viceprefeito, porcentagens_vereador
+        return porcentagens_prefeito, porcentagens_viceprefeito, porcentagens_vereador, porcentagens
        
 
 if __name__ == '__main__':
