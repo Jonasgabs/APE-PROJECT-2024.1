@@ -1,7 +1,20 @@
 from main import Main
 
 def generate_html_estatistica(qtd_prefeitos, qtd_vice_prefeitos, qtd_vereadores, ate21, ate40, ate60, depois60):
-    html_estatistica_top=f'''
+
+    lista_candidatos_por_partido = Main.partido_pref()
+    partidos_quantidade = ''
+    for indice, linha in lista_candidatos_por_partido.iterrows():
+        quantidade = linha['Quantidade']
+        nomepartido = linha['NM_PARTIDO']
+        corpo_html_mid = f'''
+                            <tr>
+                                <td>{nomepartido}</td>
+                                <td>{quantidade}</td>
+                            </tr>'''
+        partidos_quantidade += corpo_html_mid
+
+    html_estatistica=f'''
 
     <!DOCTYPE html>
     <html lang="pt-BR">
@@ -41,11 +54,7 @@ def generate_html_estatistica(qtd_prefeitos, qtd_vice_prefeitos, qtd_vereadores,
                             </tr>
                         </tbody>
                     </table>
-                </section>'''
-
-    lista_candidatos_por_partido = Main.partido_pref()
-    html_estatistica_mid_fixa = f'''
-
+                </section>
                 <section class="my-5">
                     <h2>Partidos com candidatos ao cargo de Prefeito</h2>
                     <table class="table table-dark table-hover">
@@ -54,22 +63,14 @@ def generate_html_estatistica(qtd_prefeitos, qtd_vice_prefeitos, qtd_vereadores,
                                 <th>Nome do partido</th>
                                 <th>Quantidade de Candidatos</th>
                             </tr>
-                            </thead>'''
-
-                            '''
-                        <tbody>
-                            <tr>
-                                <td>variavel <!-- inserir a variavel correspondente--></td>
-                                <td>variavel <!-- inserir a variavel correspondente--></td>
-                            </tr>
+                            </thead>
+                            <tbody>
+                                {partidos_quantidade}
                         </tbody>
                     </table>
                 </section>
-                <section class="mb-5">'''
-
-    html_estatistica_down = f'''
-
-                    <h2>Quantidade de candidatos por faixa etária</h2>
+                <section class="mb-5">
+                <h2>Quantidade de candidatos por faixa etária</h2>
                     <table class="table table-dark table-hover">
                         <thead>
                             <tr>
@@ -94,7 +95,7 @@ def generate_html_estatistica(qtd_prefeitos, qtd_vice_prefeitos, qtd_vereadores,
                     <table class="table table-dark table-hover">
                         <thead>
                             <tr>
-                                <th></th>
+                                <th>PREFEITO</th>
                                 <th>Grau de instrução</th>
                                 <th>Gênero</th>
                                 <th>Estado Civil</th>
@@ -102,11 +103,155 @@ def generate_html_estatistica(qtd_prefeitos, qtd_vice_prefeitos, qtd_vereadores,
                             </thead>
                         <tbody>
                             <tr>
-                                <td>Porcentagem</td>
-                                <td>variavel <!-- inserir a variavel correspondente--></td>
-                                <td>variavel <!-- inserir a variavel correspondente--></td>
-                                <td>variavel <!-- inserir a variavel correspondente--></td>
-                            </tr>                        
+                                <td>Porcentagem %</td>
+                                <td>LÊ E ESCREVE <!-- inserir a variavel correspondente--></td>
+                                <td>MASCULINO <!-- inserir a variavel correspondente--></td>
+                                <td>CASADO(A) <!-- inserir a variavel correspondente--></td>
+                            </tr>
+                            <tr>
+                                <td>Porcentagem %</td>
+                                <td>ENSINO FUNDAMENTAL INCOMPLETO <!-- inserir a variavel correspondente--></td>
+                                <td>FEMININO <!-- inserir a variavel correspondente--></td>
+                                <td>SOLTEIRO(A) <!-- inserir a variavel correspondente--></td>
+                            </tr>
+                            <tr>
+                                <td>Porcentagem %</td>
+                                <td>ENSINO FUNDAMENTAL COMPLETO <!-- inserir a variavel correspondente--></td>
+                                <td></td>
+                                <td>DIVORCIADO(A) <!-- inserir a variavel correspondente--></td>
+                            </tr> 
+                            <tr>
+                                <td></td>
+                                <td>ENSINO MÉDIO INCOMPLETO <!-- inserir a variavel correspondente--></td>
+                                <td></td>
+                                <td>VIUVO(A) <!-- inserir a variavel correspondente--></td>
+                            </tr> 
+                            <tr>
+                                <td></td>
+                                <td>'ENSINO MÉDIO COMPLETO <!-- inserir a variavel correspondente--></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>SUPERIOR INCOMPLETO <!-- inserir a variavel correspondente--></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>SUPERIOR COMPLETO <!-- inserir a variavel correspondente--></td>
+                                <td></td>
+                                <td></td>
+                            </tr>                             
+                        </tbody>
+                    </table>
+                    <table class="table table-dark table-hover">
+                        <thead>
+                            <tr>
+                                <th>VICE-PREFEITO</th>
+                                <th>Grau de instrução</th>
+                                <th>Gênero</th>
+                                <th>Estado Civil</th>
+                            </tr>
+                            </thead>
+                        <tbody>
+                            <tr>
+                                <td>Porcentagem %</td>
+                                <td>LÊ E ESCREVE <!-- inserir a variavel correspondente--></td>
+                                <td>MASCULINO <!-- inserir a variavel correspondente--></td>
+                                <td>CASADO(A) <!-- inserir a variavel correspondente--></td>
+                            </tr>
+                            <tr>
+                                <td>Porcentagem %</td>
+                                <td>ENSINO FUNDAMENTAL INCOMPLETO <!-- inserir a variavel correspondente--></td>
+                                <td>FEMININO <!-- inserir a variavel correspondente--></td>
+                                <td>SOLTEIRO(A) <!-- inserir a variavel correspondente--></td>
+                            </tr>
+                            <tr>
+                                <td>Porcentagem %</td>
+                                <td>ENSINO FUNDAMENTAL COMPLETO <!-- inserir a variavel correspondente--></td>
+                                <td></td>
+                                <td>DIVORCIADO(A) <!-- inserir a variavel correspondente--></td>
+                            </tr> 
+                            <tr>
+                                <td></td>
+                                <td>ENSINO MÉDIO INCOMPLETO <!-- inserir a variavel correspondente--></td>
+                                <td></td>
+                                <td>VIUVO(A) <!-- inserir a variavel correspondente--></td>
+                            </tr> 
+                            <tr>
+                                <td></td>
+                                <td>'ENSINO MÉDIO COMPLETO <!-- inserir a variavel correspondente--></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>SUPERIOR INCOMPLETO <!-- inserir a variavel correspondente--></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>SUPERIOR COMPLETO <!-- inserir a variavel correspondente--></td>
+                                <td></td>
+                                <td></td>
+                            </tr>                         
+                        </tbody>
+                    </table>
+                    <table class="table table-dark table-hover">
+                        <thead>
+                            <tr>
+                                <th>VEREADOR</th>
+                                <th>Grau de instrução</th>
+                                <th>Gênero</th>
+                                <th>Estado Civil</th>
+                            </tr>
+                            </thead>
+                        <tbody>
+                            <tr>
+                                <td>Porcentagem %</td>
+                                <td>LÊ E ESCREVE <!-- inserir a variavel correspondente--></td>
+                                <td>MASCULINO <!-- inserir a variavel correspondente--></td>
+                                <td>CASADO(A) <!-- inserir a variavel correspondente--></td>
+                            </tr>
+                            <tr>
+                                <td>Porcentagem %</td>
+                                <td>ENSINO FUNDAMENTAL INCOMPLETO <!-- inserir a variavel correspondente--></td>
+                                <td>FEMININO <!-- inserir a variavel correspondente--></td>
+                                <td>SOLTEIRO(A) <!-- inserir a variavel correspondente--></td>
+                            </tr>
+                            <tr>
+                                <td>Porcentagem %</td>
+                                <td>ENSINO FUNDAMENTAL COMPLETO <!-- inserir a variavel correspondente--></td>
+                                <td></td>
+                                <td>DIVORCIADO(A) <!-- inserir a variavel correspondente--></td>
+                            </tr> 
+                            <tr>
+                                <td></td>
+                                <td>ENSINO MÉDIO INCOMPLETO <!-- inserir a variavel correspondente--></td>
+                                <td></td>
+                                <td>VIUVO(A) <!-- inserir a variavel correspondente--></td>
+                            </tr> 
+                            <tr>
+                                <td></td>
+                                <td>'ENSINO MÉDIO COMPLETO <!-- inserir a variavel correspondente--></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>SUPERIOR INCOMPLETO <!-- inserir a variavel correspondente--></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>SUPERIOR COMPLETO <!-- inserir a variavel correspondente--></td>
+                                <td></td>
+                                <td></td>
+                            </tr>                         
                         </tbody>
                     </table>
             </main>
@@ -119,7 +264,7 @@ def generate_html_estatistica(qtd_prefeitos, qtd_vice_prefeitos, qtd_vereadores,
     </html>
 
     '''
-   
+    
 
 
 def generate_html_candidatos(candidatos):

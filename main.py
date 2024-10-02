@@ -116,20 +116,24 @@ class Main():
         return qt21, qt22_40, qt41_60, qt61
     
 
-    def grau_instrucao(self):
-        
-        self.df = pd.read_csv('consulta_cand_2024_PB.csv', encoding='ISO-8859-1', sep=';', on_bad_lines='skip')
-        self.df['DS_GRAU_INSTRUCAO'] = self.df['DS_GRAU_INSTRUCAO'].astype(str).str.strip() 
-        valores_unicos = self.df['DS_GRAU_INSTRUCAO'].unique().tolist()
-        self.graus = self.df['DS_GRAU_INSTRUCAO'].tolist()
-        #for i in range(len(self.graus)):
+    def percentuals():
+        df = pd.read_csv('consulta_cand_2024_PB.csv', encoding='ISO-8859-1', sep=';', on_bad_lines='skip')
+        for index, linha in df.iterrows():
+            
+
 
 
 
         valores_com_aspas = [f'{valor}' for valor in valores_unicos]
         print(valores_com_aspas)
         
+  "DS_CARGO"
 
+
+
+    "DS_GRAU_INSTRUCAO"
+
+    DS_GENERO
 if __name__ == '__main__':
     main = Main()
     main.grau_instrucao()
