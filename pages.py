@@ -1,8 +1,10 @@
 from main import Main
+import webbrowser
 
 def generate_html_estatistica(qtd_prefeitos, qtd_vice_prefeitos, qtd_vereadores, ate21, ate40, ate60, depois60):
-
-    lista_candidatos_por_partido = Main.partido_pref()
+    main = Main()
+    porcentagens_prefeito, porcentagens_viceprefeito, porcentagens_vereador = main.percentuals()
+    lista_candidatos_por_partido = main.partido_pref()
     partidos_quantidade = ''
     for indice, linha in lista_candidatos_por_partido.iterrows():
         quantidade = linha['Quantidade']
@@ -95,7 +97,7 @@ def generate_html_estatistica(qtd_prefeitos, qtd_vice_prefeitos, qtd_vereadores,
                     <table class="table table-dark table-hover">
                         <thead>
                             <tr>
-                                <th>PREFEITO</th>
+                                <th>PREFEITO {porcentagens_prefeito[0]:.2f}  % %</th>
                                 <th>Grau de instrução</th>
                                 <th>Gênero</th>
                                 <th>Estado Civil</th>
@@ -104,43 +106,43 @@ def generate_html_estatistica(qtd_prefeitos, qtd_vice_prefeitos, qtd_vereadores,
                         <tbody>
                             <tr>
                                 <td>Porcentagem %</td>
-                                <td>LÊ E ESCREVE <!-- inserir a variavel correspondente--></td>
-                                <td>MASCULINO <!-- inserir a variavel correspondente--></td>
-                                <td>CASADO(A) <!-- inserir a variavel correspondente--></td>
+                                <td>LÊ E ESCREVE {porcentagens_prefeito[1]:.2f}  %</td>
+                                <td>MASCULINO {porcentagens_prefeito[9]:.2f}  %</td>
+                                <td>CASADO(A) {porcentagens_prefeito[10]:.2f}  %</td>
                             </tr>
                             <tr>
-                                <td>Porcentagem %</td>
-                                <td>ENSINO FUNDAMENTAL INCOMPLETO <!-- inserir a variavel correspondente--></td>
-                                <td>FEMININO <!-- inserir a variavel correspondente--></td>
-                                <td>SOLTEIRO(A) <!-- inserir a variavel correspondente--></td>
-                            </tr>
-                            <tr>
-                                <td>Porcentagem %</td>
-                                <td>ENSINO FUNDAMENTAL COMPLETO <!-- inserir a variavel correspondente--></td>
                                 <td></td>
-                                <td>DIVORCIADO(A) <!-- inserir a variavel correspondente--></td>
+                                <td>ENSINO FUNDAMENTAL INCOMPLETO {porcentagens_prefeito[2]:.2f}  %</td>
+                                <td>FEMININO {porcentagens_prefeito[8]:.2f}  %</td>
+                                <td>SOLTEIRO(A) {porcentagens_prefeito[11]:.2f}  %</td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>ENSINO FUNDAMENTAL COMPLETO {porcentagens_prefeito[3]:.2f}  %</td>
+                                <td></td>
+                                <td>DIVORCIADO(A) {porcentagens_prefeito[12]:.2f}  %</td>
                             </tr> 
                             <tr>
                                 <td></td>
-                                <td>ENSINO MÉDIO INCOMPLETO <!-- inserir a variavel correspondente--></td>
+                                <td>ENSINO MÉDIO INCOMPLETO {porcentagens_prefeito[4]:.2f}  %</td>
                                 <td></td>
-                                <td>VIUVO(A) <!-- inserir a variavel correspondente--></td>
+                                <td>VIUVO(A) {porcentagens_prefeito[13]:.2f}  %</td>
                             </tr> 
                             <tr>
                                 <td></td>
-                                <td>'ENSINO MÉDIO COMPLETO <!-- inserir a variavel correspondente--></td>
+                                <td>'ENSINO MÉDIO COMPLETO {porcentagens_prefeito[5]:.2f}  %</td>
                                 <td></td>
                                 <td></td>
                             </tr>
                             <tr>
                                 <td></td>
-                                <td>SUPERIOR INCOMPLETO <!-- inserir a variavel correspondente--></td>
+                                <td>SUPERIOR INCOMPLETO {porcentagens_prefeito[6]:.2f}  %</td>
                                 <td></td>
                                 <td></td>
                             </tr>
                             <tr>
                                 <td></td>
-                                <td>SUPERIOR COMPLETO <!-- inserir a variavel correspondente--></td>
+                                <td>SUPERIOR COMPLETO {porcentagens_prefeito[7]:.2f}  %</td>
                                 <td></td>
                                 <td></td>
                             </tr>                             
@@ -149,7 +151,7 @@ def generate_html_estatistica(qtd_prefeitos, qtd_vice_prefeitos, qtd_vereadores,
                     <table class="table table-dark table-hover">
                         <thead>
                             <tr>
-                                <th>VICE-PREFEITO</th>
+                                <th>VICE-PREFEITO {porcentagens_viceprefeito[0]:.2f}  % %</th>
                                 <th>Grau de instrução</th>
                                 <th>Gênero</th>
                                 <th>Estado Civil</th>
@@ -158,52 +160,52 @@ def generate_html_estatistica(qtd_prefeitos, qtd_vice_prefeitos, qtd_vereadores,
                         <tbody>
                             <tr>
                                 <td>Porcentagem %</td>
-                                <td>LÊ E ESCREVE <!-- inserir a variavel correspondente--></td>
-                                <td>MASCULINO <!-- inserir a variavel correspondente--></td>
-                                <td>CASADO(A) <!-- inserir a variavel correspondente--></td>
+                                <td>LÊ E ESCREVE {porcentagens_viceprefeito[1]:.2f}  %</td>
+                                <td>MASCULINO {porcentagens_viceprefeito[9]:.2f}  %</td>
+                                <td>CASADO(A) {porcentagens_viceprefeito[10]:.2f}  %</td>
                             </tr>
                             <tr>
-                                <td>Porcentagem %</td>
-                                <td>ENSINO FUNDAMENTAL INCOMPLETO <!-- inserir a variavel correspondente--></td>
-                                <td>FEMININO <!-- inserir a variavel correspondente--></td>
-                                <td>SOLTEIRO(A) <!-- inserir a variavel correspondente--></td>
-                            </tr>
-                            <tr>
-                                <td>Porcentagem %</td>
-                                <td>ENSINO FUNDAMENTAL COMPLETO <!-- inserir a variavel correspondente--></td>
                                 <td></td>
-                                <td>DIVORCIADO(A) <!-- inserir a variavel correspondente--></td>
+                                <td>ENSINO FUNDAMENTAL INCOMPLETO {porcentagens_viceprefeito[2]:.2f}  %</td>
+                                <td>FEMININO {porcentagens_viceprefeito[8]:.2f}  %</td>
+                                <td>SOLTEIRO(A) {porcentagens_viceprefeito[11]:.2f}  %</td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>ENSINO FUNDAMENTAL COMPLETO {porcentagens_viceprefeito[3]:.2f}  %</td>
+                                <td></td>
+                                <td>DIVORCIADO(A) {porcentagens_viceprefeito[12]:.2f}  %</td>
                             </tr> 
                             <tr>
                                 <td></td>
-                                <td>ENSINO MÉDIO INCOMPLETO <!-- inserir a variavel correspondente--></td>
+                                <td>ENSINO MÉDIO INCOMPLETO {porcentagens_viceprefeito[4]:.2f}  %</td>
                                 <td></td>
-                                <td>VIUVO(A) <!-- inserir a variavel correspondente--></td>
+                                <td>VIUVO(A) {porcentagens_viceprefeito[13]:.2f}  %</td>
                             </tr> 
                             <tr>
                                 <td></td>
-                                <td>'ENSINO MÉDIO COMPLETO <!-- inserir a variavel correspondente--></td>
+                                <td>'ENSINO MÉDIO COMPLETO {porcentagens_viceprefeito[5]:.2f}  %</td>
                                 <td></td>
                                 <td></td>
                             </tr>
                             <tr>
                                 <td></td>
-                                <td>SUPERIOR INCOMPLETO <!-- inserir a variavel correspondente--></td>
+                                <td>SUPERIOR INCOMPLETO {porcentagens_viceprefeito[6]:.2f}  %</td>
                                 <td></td>
                                 <td></td>
                             </tr>
                             <tr>
                                 <td></td>
-                                <td>SUPERIOR COMPLETO <!-- inserir a variavel correspondente--></td>
+                                <td>SUPERIOR COMPLETO {porcentagens_viceprefeito[7]:.2f}  %</td>
                                 <td></td>
                                 <td></td>
-                            </tr>                         
+                            </tr>                          
                         </tbody>
                     </table>
                     <table class="table table-dark table-hover">
                         <thead>
                             <tr>
-                                <th>VEREADOR</th>
+                                <th>VEREADOR {porcentagens_vereador[0]:.2f}  % %</th>
                                 <th>Grau de instrução</th>
                                 <th>Gênero</th>
                                 <th>Estado Civil</th>
@@ -212,46 +214,46 @@ def generate_html_estatistica(qtd_prefeitos, qtd_vice_prefeitos, qtd_vereadores,
                         <tbody>
                             <tr>
                                 <td>Porcentagem %</td>
-                                <td>LÊ E ESCREVE <!-- inserir a variavel correspondente--></td>
-                                <td>MASCULINO <!-- inserir a variavel correspondente--></td>
-                                <td>CASADO(A) <!-- inserir a variavel correspondente--></td>
+                                <td>LÊ E ESCREVE {porcentagens_vereador[1]:.2f}  %</td>
+                                <td>MASCULINO {porcentagens_vereador[9]:.2f}  %</td>
+                                <td>CASADO(A) {porcentagens_vereador[10]:.2f}  %</td>
                             </tr>
                             <tr>
-                                <td>Porcentagem %</td>
-                                <td>ENSINO FUNDAMENTAL INCOMPLETO <!-- inserir a variavel correspondente--></td>
-                                <td>FEMININO <!-- inserir a variavel correspondente--></td>
-                                <td>SOLTEIRO(A) <!-- inserir a variavel correspondente--></td>
-                            </tr>
-                            <tr>
-                                <td>Porcentagem %</td>
-                                <td>ENSINO FUNDAMENTAL COMPLETO <!-- inserir a variavel correspondente--></td>
                                 <td></td>
-                                <td>DIVORCIADO(A) <!-- inserir a variavel correspondente--></td>
+                                <td>ENSINO FUNDAMENTAL INCOMPLETO {porcentagens_vereador[2]:.2f}  %</td>
+                                <td>FEMININO {porcentagens_vereador[8]:.2f}  %</td>
+                                <td>SOLTEIRO(A) {porcentagens_vereador[11]:.2f}  %</td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>ENSINO FUNDAMENTAL COMPLETO {porcentagens_vereador[3]:.2f}  %</td>
+                                <td></td>
+                                <td>DIVORCIADO(A) {porcentagens_vereador[12]:.2f}  %</td>
                             </tr> 
                             <tr>
                                 <td></td>
-                                <td>ENSINO MÉDIO INCOMPLETO <!-- inserir a variavel correspondente--></td>
+                                <td>ENSINO MÉDIO INCOMPLETO {porcentagens_vereador[4]:.2f}  %</td>
                                 <td></td>
-                                <td>VIUVO(A) <!-- inserir a variavel correspondente--></td>
+                                <td>VIUVO(A) {porcentagens_vereador[13]:.2f}  %</td>
                             </tr> 
                             <tr>
                                 <td></td>
-                                <td>'ENSINO MÉDIO COMPLETO <!-- inserir a variavel correspondente--></td>
+                                <td>'ENSINO MÉDIO COMPLETO {porcentagens_vereador[5]:.2f}  %</td>
                                 <td></td>
                                 <td></td>
                             </tr>
                             <tr>
                                 <td></td>
-                                <td>SUPERIOR INCOMPLETO <!-- inserir a variavel correspondente--></td>
+                                <td>SUPERIOR INCOMPLETO {porcentagens_vereador[6]:.2f}  %</td>
                                 <td></td>
                                 <td></td>
                             </tr>
                             <tr>
                                 <td></td>
-                                <td>SUPERIOR COMPLETO <!-- inserir a variavel correspondente--></td>
+                                <td>SUPERIOR COMPLETO {porcentagens_vereador[7]:.2f}  %</td>
                                 <td></td>
                                 <td></td>
-                            </tr>                         
+                            </tr>                          
                         </tbody>
                     </table>
             </main>
@@ -264,7 +266,10 @@ def generate_html_estatistica(qtd_prefeitos, qtd_vice_prefeitos, qtd_vereadores,
     </html>
 
     '''
-    
+    with open('pagina_estatisticas.html', 'w', encoding='utf8') as arquivo:
+        arquivo.write(html_estatistica)
+
+    webbrowser.open('pagina_estatisticas.html')
 
 
 def generate_html_candidatos(candidatos):

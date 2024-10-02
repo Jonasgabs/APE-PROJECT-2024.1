@@ -57,8 +57,9 @@ def window():
     botao_codigo = CTkButton(master = janela, text = 'Procurar por Código', corner_radius = 30, fg_color = 'transparent', border_color = '#00DB53', border_width = 2, hover_color = '#DB0A00', font = ('Arial', 20), height = 50, cursor = 'hand2', command = CandidatosCodigo)
     botao_codigo.pack(pady = 20, padx = 20, anchor = 'center')
     
-    botao_html = CTkButton(master = janela, text = 'Ver Estatisticas', corner_radius = 30, fg_color = 'transparent', border_color = '#DB0A00', border_width = 2, hover_color = '#00DB53', font = ('Arial', 20), height = 50, width = 300, cursor = 'hand2')
+    botao_html = CTkButton(master = janela, text = 'Ver Estatisticas', corner_radius = 30, fg_color = 'transparent', border_color = '#DB0A00', border_width = 2, hover_color = '#00DB53', font = ('Arial', 20), height = 50, width = 300, cursor = 'hand2', command= estatisticas)
     botao_html.pack(pady = 10, padx = 20, anchor = 'center')
+    
 
     janela.mainloop()
 
