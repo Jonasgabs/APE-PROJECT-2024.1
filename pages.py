@@ -361,12 +361,14 @@ def generate_html_candidatos(candidatos):
                             
                                 <th>Número do Candidato</th>
                                 <th>Partido</th>
+                                <th>Urna</th>
                             </tr>
                             </thead>
                         <tbody>
                             <tr>
                                 <td>{candidato[1]}</td>
                                 <td>{candidato[3]}</td>
+                                <td>{candidato[0]}</td>
                             </tr>
                         </tbody>
                     </table>
