@@ -1,4 +1,4 @@
-#pip install pillow customtkinter pandas
+#todas as bibliotecas que a gente precisa (pip install pillow customtkinter pandas webbrowser)
 from PIL import Image
 from main import Main
 from customtkinter import *
@@ -74,7 +74,10 @@ def candidatos(municipio, cargo):
 def codCandidato(codigos):
     main = Main()
     candidatos = main.cod_candidatos(codigos)
-    pages.generate_html_candidatos(candidatos)
+    try:
+        pages.generate_html_candidatos(candidatos)
+    except:
+        print('Dados não encontrados, verifique o código do candidato por favor!')
 
 #Pegando dados para estatisticas
 def estatisticas():
