@@ -75,7 +75,7 @@ def candidatos(municipio, cargo):
 def codCandidato(codigos):
     main = Main()
     candidatos = main.cod_candidatos(codigos)
-    pages.getdata(candidatos)
+    pages.generate_html_candidatos(candidatos)
 
 #Pegando dados para estatisticas
 def estatisticas():

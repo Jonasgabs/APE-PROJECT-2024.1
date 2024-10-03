@@ -55,13 +55,12 @@ class Main():
         self.df = pd.read_csv('consulta_cand_2024_PB.csv', encoding='ISO-8859-1', sep=';', on_bad_lines='skip')
         self.df['NR_CANDIDATO'] = self.df['NR_CANDIDATO'].astype(str).str.strip()
         self.df_candidato = self.df.loc[self.df['NR_CANDIDATO'] == f'{codigo}']
-        self.colunas_necessarias = ['NM_URNA_CANDIDATO', 'NR_CANDIDATO', 'NM_CANDIDATO', 'NM_PARTIDO']
+        self.colunas_necessarias = ['NM_URNA_CANDIDATO', 'NR_CANDIDATO', 'NM_CANDIDATO', 'NM_PARTIDO' ,'SQ_CANDIDATO']
         self.df_filtrados_colunas = self.df_candidato.loc[:, self.colunas_necessarias]
         candidatos_concatenados = self.df_filtrados_colunas.apply(
-            lambda row: f"{row['NM_URNA_CANDIDATO']} ; Número candidato: {row['NR_CANDIDATO']} ; Nome candidato: {row['NM_CANDIDATO']} ; Partido: {row['NM_PARTIDO']}", axis=1
+            lambda row: f"{row['NM_URNA_CANDIDATO']},{row['NR_CANDIDATO']},{row['NM_CANDIDATO']},{row['NM_PARTIDO']},{row['SQ_CANDIDATO']}", axis=1
         )
-        for candidato in candidatos_concatenados:
-            print(candidato)
+        return candidatos_concatenados
 
     #func pra trazer a quantidade de prefeitos, vices e vereadores     
     def qtd(self):
@@ -121,22 +120,22 @@ class Main():
         df = pd.read_csv('consulta_cand_2024_PB.csv', encoding='ISO-8859-1', sep=';', on_bad_lines='skip')
         LeE = EfI = EfC = EmI = EmC = Si = Sc = 0
         genero_F = genero_M = 0
-        casado = solteiro = divorciado = viuvo = 0
+        casado = solteiro = divorciado = viuvo = separado = 0
         #prefeitos
         qtd_prefeitos = 0
         prefeito_LeE = prefeito_EfI = prefeito_EfC = prefeito_EmI = prefeito_EmC = prefeito_Si = prefeito_Sc = 0
         prefeito_genero_F = prefeito_genero_M = 0
-        prefeito_casado = prefeito_solteiro = prefeito_divorciado = prefeito_viuvo = 0
+        prefeito_casado = prefeito_solteiro = prefeito_divorciado = prefeito_viuvo = prefeito_separado = 0
         #vice
         qtd_vice = 0
         viceprefeito_LeE = viceprefeito_EfI = viceprefeito_EfC = viceprefeito_EmI = viceprefeito_EmC = viceprefeito_Si = viceprefeito_Sc = 0
         viceprefeito_genero_F = viceprefeito_genero_M = 0
-        viceprefeito_casado = viceprefeito_solteiro = viceprefeito_divorciado = viceprefeito_viuvo = 0
+        viceprefeito_casado = viceprefeito_solteiro = viceprefeito_divorciado = viceprefeito_viuvo = viceprefeito_separado =  0
         #vereadores
         qtd_vereadores = 0
         vereador_LeE = vereador_EfI = vereador_EfC = vereador_EmI = vereador_EmC = vereador_Si = vereador_Sc = 0
         vereador_genero_F = vereador_genero_M = 0
-        vereador_casado = vereador_solteiro = vereador_divorciado = vereador_viuvo = 0
+        vereador_casado = vereador_solteiro = vereador_divorciado = vereador_viuvo = vereador_separado = 0
 
 
         for index, linha in df.iterrows():
@@ -187,6 +186,10 @@ class Main():
                         prefeito_viuvo += 1
                         viuvo += 1
 
+                    case 'SEPARADO(A) JUDICIALMENTE':
+                        prefeito_separado += 1
+                        separado += 1
+
             elif linha["DS_CARGO"] == "VICE-PREFEITO":
                 
                 qtd_vice += 1
@@ -233,6 +236,9 @@ class Main():
                     case 'VIÚVO(A)':
                         viceprefeito_viuvo += 1
                         viuvo += 1
+                    case 'SEPARADO(A) JUDICIALMENTE':
+                        viceprefeito_separado += 1
+                        separado += 1
             
             elif linha["DS_CARGO"] == "VEREADOR":
                 qtd_vereadores += 1
@@ -280,6 +286,9 @@ class Main():
                     case 'VIÚVO(A)':
                         vereador_viuvo += 1
                         viuvo += 1
+                    case 'SEPARADO(A) JUDICIALMENTE':
+                        vereador_separado += 1
+                        separado += 1
 
 
 
@@ -294,6 +303,7 @@ class Main():
         porcentagens_prefeito += [porcentagem_prefeito_genero_F, porcentagem_prefeito_genero_M]
         porcentagem_prefeito_casado, porcentagem_prefeito_solteiro, porcentagem_prefeito_divorciado, porcentagem_prefeito_viuvo = (prefeito_casado / qtd_prefeitos) * 100, (prefeito_solteiro / qtd_prefeitos) * 100, (prefeito_divorciado / qtd_prefeitos) * 100, (prefeito_viuvo / qtd_prefeitos) * 100
         porcentagens_prefeito += [porcentagem_prefeito_casado, porcentagem_prefeito_solteiro, porcentagem_prefeito_divorciado, porcentagem_prefeito_viuvo]
+        porcentagens_prefeito += [(prefeito_separado / qtd_prefeitos) * 100]
 
         #porcentagens viceprefeito
         porcentagens_viceprefeito = []
@@ -305,6 +315,7 @@ class Main():
         porcentagens_viceprefeito += [porcentagem_viceprefeito_genero_F, porcentagem_viceprefeito_genero_M]
         porcentagem_viceprefeito_casado, porcentagem_viceprefeito_solteiro, porcentagem_viceprefeito_divorciado, porcentagem_viceprefeito_viuvo = (viceprefeito_casado / qtd_vice) * 100, (viceprefeito_solteiro / qtd_vice) * 100, (viceprefeito_divorciado / qtd_vice) * 100, (viceprefeito_viuvo / qtd_vice) * 100
         porcentagens_viceprefeito += [porcentagem_viceprefeito_casado, porcentagem_viceprefeito_solteiro, porcentagem_viceprefeito_divorciado, porcentagem_viceprefeito_viuvo]
+        porcentagens_viceprefeito += [(viceprefeito_separado/ qtd_vice) * 100]
 
         #porcentagens vereador
         porcentagens_vereador = []
@@ -316,6 +327,7 @@ class Main():
         porcentagens_vereador += [porcentagem_vereador_genero_F, porcentagem_vereador_genero_M]
         porcentagem_vereador_casado, porcentagem_vereador_solteiro, porcentagem_vereador_divorciado, porcentagem_vereador_viuvo = (vereador_casado / qtd_vereadores) * 100, (vereador_solteiro / qtd_vereadores) * 100, (vereador_divorciado / qtd_vereadores) * 100, (vereador_viuvo / qtd_vereadores) * 100
         porcentagens_vereador += [porcentagem_vereador_casado, porcentagem_vereador_solteiro, porcentagem_vereador_divorciado, porcentagem_vereador_viuvo]
+        porcentagens_vereador += [(vereador_separado/ qtd_vereadores) * 100]
 
         #porcentagens total
         porcentagens= []
@@ -327,6 +339,7 @@ class Main():
         porcentagens+= [porcentagem_genero_F, porcentagem_genero_M]
         porcentagem_casado, porcentagem_solteiro, porcentagem_divorciado, porcentagem_viuvo = (casado / total_candidatos) * 100, (solteiro / total_candidatos) * 100, (divorciado / total_candidatos) * 100, (viuvo / total_candidatos) * 100
         porcentagens+= [porcentagem_casado, porcentagem_solteiro, porcentagem_divorciado, porcentagem_viuvo]
+        porcentagens += [(separado  / total_candidatos) * 100]
         
         return porcentagens_prefeito, porcentagens_viceprefeito, porcentagens_vereador, porcentagens
        

@@ -126,13 +126,13 @@ def generate_html_estatistica(qtd_prefeitos, qtd_vice_prefeitos, qtd_vereadores,
                                 <td></td>
                                 <td>ENSINO MÉDIO INCOMPLETO {porcentagens[4]:.2f}  %</td>
                                 <td></td>
-                                <td>VIUVO(A) {porcentagens[13]:.2f}  %</td>
+                                <td>VIÚVO(A) {porcentagens[13]:.2f}  %</td>
                             </tr> 
                             <tr>
                                 <td></td>
-                                <td>'ENSINO MÉDIO COMPLETO {porcentagens[5]:.2f}  %</td>
+                                <td>ENSINO MÉDIO COMPLETO {porcentagens[5]:.2f}  %</td>
                                 <td></td>
-                                <td></td>
+                                <td>SEPARADO(A) JUDICIALMENTE {porcentagens[14]:.2F} %</td>
                             </tr>
                             <tr>
                                 <td></td>
@@ -180,13 +180,13 @@ def generate_html_estatistica(qtd_prefeitos, qtd_vice_prefeitos, qtd_vereadores,
                                 <td></td>
                                 <td>ENSINO MÉDIO INCOMPLETO {porcentagens_prefeito[4]:.2f}  %</td>
                                 <td></td>
-                                <td>VIUVO(A) {porcentagens_prefeito[13]:.2f}  %</td>
+                                <td>VIÚVO(A) {porcentagens_prefeito[13]:.2f}  %</td>
                             </tr> 
                             <tr>
                                 <td></td>
-                                <td>'ENSINO MÉDIO COMPLETO {porcentagens_prefeito[5]:.2f}  %</td>
+                                <td>ENSINO MÉDIO COMPLETO {porcentagens_prefeito[5]:.2f}  %</td>
                                 <td></td>
-                                <td></td>
+                                <td>SEPARADO(A) JUDICIALMENTE {porcentagens_prefeito[14]:.2F}  %</td>
                             </tr>
                             <tr>
                                 <td></td>
@@ -234,13 +234,13 @@ def generate_html_estatistica(qtd_prefeitos, qtd_vice_prefeitos, qtd_vereadores,
                                 <td></td>
                                 <td>ENSINO MÉDIO INCOMPLETO {porcentagens_viceprefeito[4]:.2f}  %</td>
                                 <td></td>
-                                <td>VIUVO(A) {porcentagens_viceprefeito[13]:.2f}  %</td>
+                                <td>VIÚVO(A) {porcentagens_viceprefeito[13]:.2f}  %</td>
                             </tr> 
                             <tr>
                                 <td></td>
-                                <td>'ENSINO MÉDIO COMPLETO {porcentagens_viceprefeito[5]:.2f}  %</td>
+                                <td>ENSINO MÉDIO COMPLETO {porcentagens_viceprefeito[5]:.2f}  %</td>
                                 <td></td>
-                                <td></td>
+                                <td>SEPARADO(A) JUDICIALMENTE {porcentagens_viceprefeito[14]:.2F} %</td>
                             </tr>
                             <tr>
                                 <td></td>
@@ -288,13 +288,13 @@ def generate_html_estatistica(qtd_prefeitos, qtd_vice_prefeitos, qtd_vereadores,
                                 <td></td>
                                 <td>ENSINO MÉDIO INCOMPLETO {porcentagens_vereador[4]:.2f}  %</td>
                                 <td></td>
-                                <td>VIUVO(A) {porcentagens_vereador[13]:.2f}  %</td>
+                                <td>VIÚVO(A) {porcentagens_vereador[13]:.2f}  %</td>
                             </tr> 
                             <tr>
                                 <td></td>
-                                <td>'ENSINO MÉDIO COMPLETO {porcentagens_vereador[5]:.2f}  %</td>
+                                <td>ENSINO MÉDIO COMPLETO {porcentagens_vereador[5]:.2f}  %</td>
                                 <td></td>
-                                <td></td>
+                                <td>SEPARADO(A) JUDICIALMENTE {porcentagens_vereador[14]:.2F} %</td>
                             </tr>
                             <tr>
                                 <td></td>
@@ -328,105 +328,49 @@ def generate_html_estatistica(qtd_prefeitos, qtd_vice_prefeitos, qtd_vereadores,
 
 
 def generate_html_candidatos(candidatos):
+
+    for candidato in candidatos:
+        candidato = candidato.split(',')
+        
     html=f'''
 
-    <!DOCTYPE html>
+        <!DOCTYPE html>
     <html lang="pt-BR">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Estatísticas dos Candidatos</title>
+        <title>Seu Candidato</title>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+>
     </head>
     <body class="bg-secondary text-black">
         <div class="container">
             <header class="my-5">
-                <h1 class="text-center">Estatísticas dos Candidatos</h1>
+                <h1 class="text-center">Candidato</h1>
             </header>
             <main>
-                <section class="mb-5"></section>
-                    <h2>Quantidade de candidatos por cargo</h2>
+                <div class="header-content">
+                    <img src="https://raw.githubusercontent.com/davicesarmorais/fotos-candidatos-pb/refs/heads/main/fotos-candidatos-pb/FPB{candidato[4]}_div.jpg" 
+                         alt="Imagem do candidato" 
+                         style="width: 150px; height: auto; display: block; margin: 0 auto;">
+                    <h2 class="mt-3">{candidato[2]}</h2> <!-- Nome do candidato -->
+                </div>
                     <table class="table table-dark table-hover">
                         <thead>
                             <tr>
-                                <th style="width: 40%;">Cargo</th>
-                                <th>Quantidade de candidatos</th>
+                            
+                                <th>Número do Candidato</th>
+                                <th>Partido</th>
                             </tr>
                             </thead>
                         <tbody>
                             <tr>
-                                <td>Prefeito</td>
-                                <td>variavel <!-- inserir a variavel correspondente--></td>
-                            </tr>
-                            <tr>
-                                <td>Vice-prefeito</td>
-                                <td>variavel <!-- inserir a variavel correspondente--></td>
-                            </tr>
-                            <tr>
-                                <td>Vereador</td>
-                                <td>variavel <!-- inserir a variavel correspondente--></td>
+                                <td>{candidato[1]}</td>
+                                <td>{candidato[3]}</td>
                             </tr>
                         </tbody>
                     </table>
                 </section>
-                <section class="my-5">
-                    <h2>Partidos com candidatos ao cargo de Prefeito</h2>
-                    <table class="table table-dark table-hover">
-                        <thead>
-                            <tr>
-                                <th>Nome do partido</th>
-                                <th>Quantidade de Candidatos</th>
-                            </tr>
-                            </thead>
-                        <tbody>
-                            <tr>
-                                <td>variavel <!-- inserir a variavel correspondente--></td>
-                                <td>variavel <!-- inserir a variavel correspondente--></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </section>
-                <section class="mb-5">
-                    <h2>Quantidade de candidatos por faixa etária</h2>
-                    <table class="table table-dark table-hover">
-                        <thead>
-                            <tr>
-                                <th>Até 21 anos</th>
-                                <th>Entre 22 anos e 40 anos</th>
-                                <th>Entre 41 anos e 60 anos</th>
-                                <th>Acima de 60 anos</th>
-                            </tr>
-                            </thead>
-                        <tbody>
-                            <tr>
-                                <td>variavel <!-- inserir a variavel correspondente--></td>
-                                <td>variavel <!-- inserir a variavel correspondente--></td>
-                                <td>variavel <!-- inserir a variavel correspondente--></td>
-                                <td>variavel <!-- inserir a variavel correspondente--></td>
-                            </tr>                        
-                        </tbody>
-                    </table>
-                </section>
-                <section class="mb-5">
-                    <h2>Percentual de candidatos por cargo</h2>
-                    <table class="table table-dark table-hover">
-                        <thead>
-                            <tr>
-                                <th></th>
-                                <th>Grau de instrução</th>
-                                <th>Gênero</th>
-                                <th>Estado Civil</th>
-                            </tr>
-                            </thead>
-                        <tbody>
-                            <tr>
-                                <td>Porcentagem</td>
-                                <td>variavel <!-- inserir a variavel correspondente--></td>
-                                <td>variavel <!-- inserir a variavel correspondente--></td>
-                                <td>variavel <!-- inserir a variavel correspondente--></td>
-                            </tr>                        
-                        </tbody>
-                    </table>
             </main>
             <footer class="text-center my-4">
                 <p>&copy; 2024 TSE - Estatísticas Eleitorais.</p>
@@ -434,21 +378,13 @@ def generate_html_candidatos(candidatos):
         </div>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>t>
     </body>
-    </html>
-
-    '''
-    return html
-
-
-def getdata(candidatos):
-    print(candidatos)
+    </html>'''
     
-#getdata(municipio, cargo)
+    with open('pagina_candidatos.html', 'w', encoding='utf8') as arquivo:
+        arquivo.write(html)
 
-#ver como utilizar no app.py
-'''
-def abrir_html(municipio, cargo):
-    
-    arquivo_html = 'pagina_candidato.html'  
-    webbrowser.open_new_tab(arquivo_html)
-'''
+    webbrowser.open('pagina_candidatos.html')
+
+
+
+
