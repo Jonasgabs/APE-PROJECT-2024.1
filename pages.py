@@ -353,7 +353,7 @@ def generate_html_candidatos(candidatos):
                     <img src="https://raw.githubusercontent.com/davicesarmorais/fotos-candidatos-pb/refs/heads/main/fotos-candidatos-pb/FPB{candidato[4]}_div.jpg" 
                          alt="Imagem do candidato" 
                          style="width: 150px; height: auto; display: block; margin: 0 auto;">
-                    <h2 class="mt-3">{candidato[2]}</h2> <!-- Nome do candidato -->
+                    <h2 class="mt-3">{candidato[2]}</h2> 
                 </div>
                     <table class="table table-dark table-hover">
                         <thead>
