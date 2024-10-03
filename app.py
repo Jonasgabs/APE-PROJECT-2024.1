@@ -1,3 +1,4 @@
+#pip install pillow customtkinter pandas
 from PIL import Image
 from main import Main
 from customtkinter import *
@@ -38,12 +39,10 @@ def window():
     def Candidatos():
         cargo = box_cargo.get()
         municipio = box_mun.get()
-        janela.destroy()
         candidatos(municipio, cargo)
 
     def CandidatosCodigo():
         cod = codigo.get()
-        janela.destroy()
         codCandidato(cod)
 
     botao = CTkButton(master = janela, text = 'Procurar Candidatos', corner_radius = 30, fg_color = 'transparent', border_color = '#00DB53', border_width = 2, hover_color = '#DB0A00', font = ('Arial', 20), height = 50, cursor = 'hand2', command = Candidatos)
@@ -69,7 +68,7 @@ def window():
 def candidatos(municipio, cargo):
     main = Main()
     candidatos = main.municipios_cargos(municipio, cargo)
-    pages.getdata(candidatos)
+    print(candidatos) if candidatos != [] else print('Código inválido')
     
 #PEGANDO CANDIDATOS PELO CÓDIGO
 def codCandidato(codigos):
